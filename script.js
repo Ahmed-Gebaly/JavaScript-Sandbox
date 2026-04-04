@@ -550,9 +550,31 @@ for (var i = 0; i < array.length; i++) {
     console.log(`Array element at index ${i}: ${array[i]}`);
 }
 
+for ( var i in array) {
+    console.log(`Array element at index ${i}: ${array[i]}`);
+}
+
+for ( var i of array) {
+    console.log(`Array element: ${i}`);
+}
+
 for (var i = 1; i % 2 == 0 && i <= 20; i++) {
     console.log(`Even number: ${i}`);
 }
+
+var str = "Hello World";
+for (var i = 0; i < str.length; i++) {
+    console.log(`Character at index ${i}: ${str[i]}`);
+}
+
+for ( var i in str) {
+    console.log(`Character at index ${i}: ${str[i]}`);
+}
+
+for ( var i of str) {
+    console.log(`Character: ${i}`);
+}
+
 
 console.log("\n=== WHILE LOOPS ===");
 
