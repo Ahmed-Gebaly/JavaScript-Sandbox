@@ -463,22 +463,102 @@ console.log("\n=== ARRAYS ===");
 var array1 = [1, 2, 3, 4, 5];
 var array2 = ["Hello", "World", 42, true];
 var fruits = ["Apple", "Banana", "Cherry"];
+console.log(array1);
 console.log(`Array 1: ${array1}`);
 console.log(`Array 2: ${array2}`);
 console.log(`Fruits: ${fruits}`);
+
 console.log(`First fruit: ${fruits[0]}`);
 console.log(`Array length: ${fruits.length}`);
+console.log(`Is fruits an array? ${Array.isArray(fruits)}`); // true (check if variable is an array)
+console.log(`Does fruits include Apple? ${fruits.includes("Apple")}`); // true (check if array includes a value)
+var index = fruits.indexOf("Banana"); // Get index of element
+console.log(`Index of Banana: ${index}`);
+var index = fruits.indexOf("Raspberry"); // Get -1 if element not found
+console.log(`Index of Raspberry: ${index}`);
+
 fruits.push("Orange"); // Add to end
 console.log(`After push: ${fruits}`);
 fruits.pop(); // Remove from end
 console.log(`After pop: ${fruits}`);
-fruits.unshift("Mango"); // Add to start
-console.log(`After unshift: ${fruits}`);
 fruits.shift(); // Remove from start
 console.log(`After shift: ${fruits}`);
-fruits.splice(1, 1); // Remove 1 element at index 1
+fruits.unshift("Mango"); // Add to start
+console.log(`After unshift: ${fruits}`);
+
+fruits.splice(1, 2); // Remove 2 elements starting at index 1
 console.log(`After splice: ${fruits}`);
+fruits.splice(1, 2, "Strawberry", "Raspberry"); // Remove 2 elements starting at index 1 and add new elements
+console.log(`After splice: ${fruits}`);
+fruits.splice(1, 0, "Kiwi"); // Add 1 element at index 1 without removing any elements
+console.log(`After splice: ${fruits}`);
+
 var slicedFruits = fruits.slice(0, 2); // Get a portion of the array
 console.log(`Sliced fruits: ${slicedFruits}`);
-var index = fruits.indexOf("Banana");
-console.log(`Index of Banana: ${index}`);
+
+fruits[1] = "Blueberry"; // Update element at index 1
+console.log(`After update: ${fruits}`); 
+var sortedFruits = fruits.sort(); // Sort array alphabetically
+console.log(`Sorted fruits: ${sortedFruits}`);
+var reversedFruits = fruits.reverse(); // Reverse the order of the array
+console.log(`Reversed fruits: ${reversedFruits}`);
+
+// ===== Lab 3 Exercise =====
+console.log("\n--- Lab Exercise ---");
+
+var arrayInput =[];
+document.getElementById("submitArrayBtn").addEventListener("click", function(){
+    if (document.getElementById("arrayInput").value.length == 0) {
+        alert("Please enter a value to add to the array");
+    } else {
+        arrayInput.push(document.getElementById("arrayInput").value); // Get input, split by comma, and trim whitespace
+        document.getElementById("arrayOutput").innerHTML = arrayInput;
+        document.getElementById("arrayLengthOutput").innerHTML = `Array Length: ${arrayInput.length}`;
+        document.getElementById("arrayInput").value = ""; // Clear input field after adding to array
+    }
+})
+
+document.getElementById("deleteArrayBtn").addEventListener("click", function(){
+    if (document.getElementById("arrayInput").value.length == 0) {
+        arrayInput.pop(); // Remove last element from array
+    } else {
+        var index = arrayInput.indexOf(document.getElementById("arrayInput").value); // Get index of element to delete
+        if (index !== -1) {
+            arrayInput.splice(index, 1); // Remove element at index
+        } else {
+            alert("Element not found in array");
+        }
+    }
+    document.getElementById("arrayOutput").innerHTML = arrayInput;
+    document.getElementById("arrayLengthOutput").innerHTML = `Array Length: ${arrayInput.length}`;
+    document.getElementById("arrayInput").value = ""; // Clear input field after adding to array
+
+});
+
+// ====== SECTION 15: LOOPS ======
+console.log("\n=== FOR LOOPS ===");
+for (var i = 0; i < 5; i++) {
+    console.log(`For loop iteration: ${i}`);
+}
+
+var array = []
+for (var i = 1; i <= 5; i++) {
+    array.push(i);
+}
+
+for (var i = 0; i < array.length; i++) {
+    console.log(`Array element at index ${i}: ${array[i]}`);
+}
+
+for (var i = 1; i % 2 == 0 && i <= 20; i++) {
+    console.log(`Even number: ${i}`);
+}
+
+console.log("\n=== WHILE LOOPS ===");
+
+
+// ====== Lab 4 Exercise ======
+console.log("\n--- Lab Exercise ---");
+for (var i = 1; i <= 10; i++) {
+    document.getElementById("incrementOutput").innerHTML += `10 X ${i} = ${10 * i}<br>`;
+}
