@@ -502,6 +502,7 @@ var sortedFruits = fruits.sort(); // Sort array alphabetically
 console.log(`Sorted fruits: ${sortedFruits}`);
 var reversedFruits = fruits.reverse(); // Reverse the order of the array
 console.log(`Reversed fruits: ${reversedFruits}`);
+console.log(`Fruits as string: ${fruits.join(", ")}`); // Join array elements into a string
 
 // ===== Lab 3 Exercise =====
 console.log("\n--- Lab Exercise ---");
@@ -575,12 +576,67 @@ for ( var i of str) {
     console.log(`Character: ${i}`);
 }
 
+// This loop demonstrates the use of break and continue statements
+// It will print numbers from 1 to 30, but will skip even numbers and break the loop when it reaches 25
+for (var i = 1; i <= 30; i++) {
+    if (i == 25) {
+        console.log("Breaking the loop at i = 25");
+        break; // Exit the loop when i is 25
+    }
+    if (i % 2 == 0) {
+        console.log(`Skipping even number: ${i}`);
+        continue; // Skip the rest of the loop body for even numbers
+    }
+    console.log(`Current number: ${i}`);
+}
 
 console.log("\n=== WHILE LOOPS ===");
 
 
 // ====== Lab 4 Exercise ======
-console.log("\n--- Lab Exercise ---");
+console.log("\n--- Lab 4 Exercise ---");
 for (var i = 1; i <= 10; i++) {
     document.getElementById("incrementOutput").innerHTML += `10 X ${i} = ${10 * i}<br>`;
 }
+
+// ====== Lab 5 Exercise ======
+console.log("\n--- Lab 5 Exercise ---");
+document.getElementById("submitWordBtn").addEventListener("click", function() {
+    var word = document.getElementById("wordInput").value;
+    document.getElementById("wordInput").value = ""; // Clear input field after getting value
+    for (var i of word) {
+        var lowerI = i.toLowerCase();
+        var arry = ["a", "e", "i", "o", "u"];
+        if (!arry.includes(lowerI)) {
+            document.getElementById("wordOutput").innerHTML += `${i}<br>`;
+        }
+    }
+});
+
+// ====== Lab 6 Exercise ======
+console.log("\n--- Lab 6 Exercise ---");
+
+document.getElementById("searchBtn").addEventListener("click", function() {
+    var studentName = document.getElementById("studentNameInput").value;
+    var studentNameLow = studentName.toLowerCase();
+    console.log(`Searching for student: "${studentName}"`);
+    document.getElementById("studentNameInput").value = ""; // Clear input field after getting value
+    var studentsList = ["Alice", "Bob", "Charlie", "David", "Eve", "Ahmed"];
+    document.getElementById("studentList").innerHTML = `Student List: ${studentsList.join(" - ")}`;
+    if (studentNameLow.length == 0) {
+        document.getElementById("searchOutput").innerHTML = `Please enter a student name.`;
+    } else {
+        var isfound = false; // Flag to track if student is found instead of using break statement
+        for (var student of studentsList) {
+            if (student.toLowerCase() === studentNameLow) { isfound = true;}
+        }
+        if (isfound) {
+            document.getElementById("searchOutput").innerHTML = `Student "${studentName}" <strong>found</strong> in the Student list.`;
+        } else {
+            document.getElementById("searchOutput").innerHTML = `Student "${studentName}" <strong>not found</strong> in the Student list.`;
+        }
+    }
+});
+
+
+
