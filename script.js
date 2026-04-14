@@ -504,6 +504,17 @@ var reversedFruits = fruits.reverse(); // Reverse the order of the array
 console.log(`Reversed fruits: ${reversedFruits}`);
 console.log(`Fruits as string: ${fruits.join(", ")}`); // Join array elements into a string
 
+console.log("\n=== 2D ARRAYS ===");
+var matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+console.log(`Matrix: ${matrix}`);
+console.log(`Element at row 1, column 2: ${matrix[0][1]}`);
+ // Array[row][column]
+
+
 // ===== Lab 3 Exercise =====
 console.log("\n--- Lab Exercise ---");
 
@@ -590,7 +601,44 @@ for (var i = 1; i <= 30; i++) {
     console.log(`Current number: ${i}`);
 }
 
-console.log("\n=== WHILE LOOPS ===");
+console.log("\n=== WHILE LOOPS ===");   
+var num1 = 10;
+while (num1 < 20) {
+    console.log(`num1 is ${num1}, which is less than 20`);
+    num1 += 2; // Increment num1 by 2 in each iteration
+}   
+
+var num2 = 0;
+do {
+    console.log(`num2 is ${num2}, which is less than 20`);
+    num2 += 3; // Increment num2 by 3 in each iteration
+} while (num2 < 20);
+
+// while (true) {
+//     var userInput = prompt("Enter a number (or type 'exit' to quit):");
+//     if (userInput.toLowerCase() === "exit") {
+//         break;
+//     }
+//     var number = parseInt(userInput);
+//     if (!isNaN(number)) {
+//         console.log(`You entered: ${number}`);
+//     } else {
+//         console.log("Invalid input. Please enter a number.");
+//     }
+// }
+
+var twoDArray = [
+    [ "Ahmed", "Ali", "Sara"],
+    [ "John", "Jane", "Doe"],
+    [ "Alice", "Bob", "Charlie"]
+];
+
+console.log("\n=== NESTED LOOPS ===");
+for (var i = 0; i < twoDArray.length; i++) {
+    for (var j = 0; j < twoDArray[i].length; j++) {
+        console.log(`  Element at [${i}][${j}]: ${twoDArray[i][j]}`);
+    }
+}
 
 
 // ====== Lab 4 Exercise ======
@@ -638,5 +686,152 @@ document.getElementById("searchBtn").addEventListener("click", function() {
     }
 });
 
+document.getElementById("searchBtn2").addEventListener("click", function() {
+    var studentName2 = document.getElementById("studentNameInput2").value;
+    var studentNameLow2 = studentName2.toLowerCase();
+    console.log(`Searching for student: "${studentName2}"`);
+    document.getElementById("studentNameInput2").value = ""; // Clear input field after getting value
+    var studentsList2 = ["Alice", "Bob", "Charlie", "David", "Eve", "Ahmed"];
+    document.getElementById("studentList2").innerHTML = `Student List: ${studentsList2.join(" - ")}`;
+    if (studentNameLow2.length == 0) {
+        document.getElementById("searchOutput2").innerHTML = `Please enter a student name.`;
+    } else {
+        var index = 0; // Initialize index to -1 to indicate not found
+        while (index < studentsList2.length) {
+            if (studentsList2[index].toLowerCase() === studentNameLow2) {
+                document.getElementById("searchOutput2").innerHTML = `Student "${studentName2}" <strong>found</strong> in the Student list.`;
+                break; // Exit loop when student is found
+            } else {
+                document.getElementById("searchOutput2").innerHTML = `Student "${studentName2}" <strong>not found</strong> in the Student list.`;
+        }
+        index++; // Increment index to check next student
+        }            
+    }
+});
+
+// ====== Lab 7 Exercise ======
+console.log("\n--- Lab 7 Exercise ---");
+
+for (var i = 1; i <= 3; i++) {
+    document.getElementById("tableOutput").innerHTML += ` Multiplication Table of ${i} <br>`;
+    for ( var j = 1; j <= 10; j++) {
+        document.getElementById("tableOutput").innerHTML += `${i} X ${j} = ${i * j} <br>`;
+    }
+    document.getElementById("tableOutput").innerHTML += `<hr>`;
+}
+
+// ====== SECTION 16: FUNCTIONS ======
+console.log("\n=== FUNCTIONS ===");
+
+function printGreet() {  // Function declaration/Header
+    console.log("Hello! This is a simple function that takes no parameters."); // Function body
+}
+
+printGreet(); // Calling the function without argument
+
+function printGreetName(name="Guest") { // Function with parameter and default value
+    console.log(`Hello, ${name}! This function takes a name as a parameter and greets you.`); // Using parameter in function body
+}
+
+printGreetName(); // Calling the function without argument, will use default value "Guest"
+printGreetName("Ahmed"); // Calling the function with argument "Ahmed"
+printGreetName("Gebaly"); // Calling the function with argument "Gebaly "
+
+function add(a, b) { // Function with parameters
+    return a + b; // Return the sum of a and b
+}
+var sum = add(5, 3); // Calling the function and storing the result in a variable
+console.log(`The sum of 5 and 3 is: ${sum}`); // Output the result
+console.log(`add(5, 3) = ${add(5, 3)}`); // Calling the function with arguments 5 and 3, should return 8
+console.log(`add(-2, 10) = ${add(-2, 10)}`); // Calling the function with arguments -2 and 10, should return 8
+
+// ====== Lab 8 Exercise ======
+console.log("\n--- Lab 8 Exercise ---");
+
+function arrReverse(arr) {
+    if (!arr) {
+        return "No array Entered";
+    } else if (arr.length == 0) {
+        return "Array is empty"; 
+    } else if (arr.length == 1) {
+        return arr; // Return the same array if it has only one element
+    } else {
+        var reversedArr = [];
+        for ( i of arr) {
+            reversedArr.unshift(i); // Add each element to the beginning of the reversedArr
+        }
+        return reversedArr.join(" - "); // Join the reversed array into a string for display
+    }
+}
+
+document.getElementById("reverseArrayOutput").innerHTML += `<strong>Reversed Array:</strong> ${arrReverse([1, "Ahmed", true, 3.14, "JavaScript"])}`;
+document.getElementById("reverseArrayOutput").innerHTML += `<br><strong>Reversed Array:</strong> ${arrReverse([1])}`; // Calling function with array of one element, should return the same array
+document.getElementById("reverseArrayOutput").innerHTML += `<br><strong>Reversed Array:</strong> ${arrReverse()}`; // Calling function without argument, should return "No array Entered"
+document.getElementById("reverseArrayOutput").innerHTML += `<br><strong>Reversed Array:</strong> ${arrReverse([])}`; // Calling function with empty array, should return "Array is empty"
+
+// First-class function - A function that can be treated like any other variable (assigned to variables, passed as arguments, returned from other functions)
+function greet(name) {
+    return `Hello, ${name}!`;
+}
+var greetFunc = greet; // Assigning function to a variable
+console.log(greetFunc("Alice")); // Calling the function using the variable name, should return "Hello, Alice!"
+console.log(`Function name: ${greetFunc.name}`); // "greet" (name property of the function)
+console.log(`Function length: ${greetFunc.length}`); // 1 (length property of the function, which is the number of parameters it takes)
+
+// Anonymous function - A function without a name, often used in function expressions or as arguments to other functions
+var anonFunc = function() {
+    console.log("This is an anonymous function assigned to variable anonFunc");
+};
+anonFunc(); // Calling the anonymous function using the variable name
+console.log(`Type of anonFunc: ${typeof anonFunc}`); // function (type of the variable anonFunc which holds the anonymous function)
+console.log(`anonFunc.name: ${anonFunc.name}`); // "anonFunc" (name property of the anonymous function, which is the variable name it is assigned to)
+console.log(`anonFunc.length: ${anonFunc.length}`); // 0 (length property of the anonymous function, which is the number of parameters it takes)
+
+// Function expression - A function that is defined as part of an expression (can be anonymous or named)
+var funcExpr = function namedFunc() {
+    console.log("This is a named function expression assigned to variable funcExpr");
+};
+funcExpr(); // Calling the function expression using the variable name
+console.log(`funcExpr.name: ${funcExpr.name}`); // "namedFunc" (name property of the function expression, which is the function name)
+console.log(`funcExpr.length: ${funcExpr.length}`); // 0 (length property of the function expression, which is the number of parameters it takes)
+
+// Function declaration - A function that is declared with a name and can be called before it is defined due to hoisting
+declaredFunc(); // Calling the function declaration
+console.log(`declaredFunc.name: ${declaredFunc.name}`); // "declaredFunc" (name property of the function declaration)
+console.log(`declaredFunc.length: ${declaredFunc.length}`); // 0 (length property of the function declaration, which is the number of parameters it takes)
+
+function declaredFunc() {
+    console.log("This is a function declaration that can be called before it is defined.");
+}
+
+// Arrow function - A shorter syntax for writing functions
+var arrowFunc = (name) => {
+    return `Hello, ${name}! This is an arrow function.`;
+};
+console.log(arrowFunc("Bob")); // Calling the arrow function, should return "Hello, Bob! This is an arrow function."
+console.log(`arrowFunc.name: ${arrowFunc.name}`); // "arrowFunc" (name property of the arrow function, which is the variable name it is assigned to)
+console.log(`arrowFunc.length: ${arrowFunc.length}`); // 1 (length property of the arrow function, which is the number of parameters it takes)
+
+// Generator Function - A special type of function that can be paused and resumed, allowing it to generate a sequence of values over time
+
+// Async Function - A function that allows you to write asynchronous code using async/await syntax
+
+// Object Function (Method) - A function that is a property of an object, often used as methods to perform actions on the object or its data
+
+// Constructor Function - A function used to create and initialize objects, often used with the "new" keyword to create instances of a particular type of object
 
 
+// Higher-Order function - A function that takes another function as an argument or returns a function as a result, allowing for more flexible and reusable code
+function higherOrderFunc(func) {
+    console.log("This is a higher-order function that takes another function as an argument.");
+    func(); // Call the function passed as an argument
+}
+higherOrderFunc(function() {
+    console.log("This is the function passed as an argument to the higher-order function.");
+}); // Calling the higher-order function with an anonymous function as an argument
+
+function returnFunc() {
+    return function() {
+        console.log("This is a function returned from another function.");
+    };
+}
